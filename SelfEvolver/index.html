@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Self Evolver</title>
+</head>
+<body>
+    <h1>Self Evolver</h1>
+    <div>
+        <h2>Evolve</h2>
+        <button onclick="evolve()">Evolve</button>
+        <pre id="evolveResult"></pre>
+    </div>
+    <div>
+        <h2>Work on Issue</h2>
+        <button onclick="workOnIssue()">Work on Issue</button>
+        <pre id="workOnIssueResult"></pre>
+    </div>
+
+    <script>
+        async function evolve() {
+            const response = await fetch('/evolve', {
+                method: 'POST'
+            });
+            const data = await response.json();
+            document.getElementById('evolveResult').textContent = data.message || data.error;
+        }
+
+        async function workOnIssue() {
+            const response = await fetch('/work-on-issue', {
+                method: 'POST'
+            });
+            const data = await response.json();
+            document.getElementById('workOnIssueResult').textContent = data.message || data.error;
+        }
+    </script>
+</body>
+</html>
